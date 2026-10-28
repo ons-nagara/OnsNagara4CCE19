@@ -1,0 +1,41 @@
+package tn.esprit.onsnagara4cce19.Services.Impls;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import tn.esprit.onsnagara4cce19.Domain.Agence;
+import tn.esprit.onsnagara4cce19.Repositories.IAgenceRepository;
+import tn.esprit.onsnagara4cce19.Services.IAgenceService;
+
+import java.util.List;
+
+@RequiredArgsConstructor
+@Service
+public class AgenceService implements IAgenceService {
+
+    private final IAgenceRepository agenceRepository;
+
+    @Override
+    public Agence createAgence(Agence agence) {
+        return agenceRepository.save(agence);
+    }
+
+    @Override
+    public Agence getAgenceById(Long id) {
+        return agenceRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Agence updateAgence(Agence agence) {
+        return agenceRepository.save(agence);
+    }
+
+    @Override
+    public void deleteAgence(Long id) {
+        agenceRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Agence> getAllAgences() {
+        return agenceRepository.findAll();
+    }
+}

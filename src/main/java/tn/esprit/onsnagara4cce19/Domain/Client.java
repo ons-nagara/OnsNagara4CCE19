@@ -1,28 +1,30 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idClient;
+    Long idClient;
+    String nom;
+    String prenom;
+    String email;
+    String telephone;
+    String numPermis;
+    LocalDate dateInscription;
 
-    private String nom;
-    private String prenom;
-    private String email;
-    private String telephone;
-    private String numPermis;
-    private LocalDate dateInscription;
-
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-    List<Reservation> reservations;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    List<Reservation> reservations = new ArrayList<>();
 }

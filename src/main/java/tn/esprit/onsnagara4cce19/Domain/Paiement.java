@@ -1,27 +1,27 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 public class Paiement {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaiement;
-
-    private BigDecimal montant;
-    private LocalDate datePaiement;
-
+    Long idPaiement;
+    BigDecimal montant;
+    LocalDate datePaiement;
     @Enumerated(EnumType.STRING)
-    private ModePaiement modePaiement;
+    ModePaiement modePaiement;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     Contrat contrat;
 }

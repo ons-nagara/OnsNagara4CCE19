@@ -1,24 +1,25 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-@Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 public class Employe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEmploye;
-
-    private String nom;
-    private String prenom;
-
+    Long idEmploye;
+    String nom;
+    String prenom;
     @Enumerated(EnumType.STRING)
-    private RoleEmploye role;
+    RoleEmploye role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     Agence agence;
 }

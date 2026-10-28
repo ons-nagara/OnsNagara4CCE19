@@ -1,29 +1,31 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 public class Contrat {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idContrat;
+    Long idContrat;
+    LocalDate dateSignature;
+    BigDecimal montantTotal;
+    boolean valide;
 
-    private LocalDate dateSignature;
-    private BigDecimal montantTotal;
-    private boolean valide;
-
-    @OneToOne(mappedBy = "contrat", fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     Reservation reservation;
 
-    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Paiement> paiements;
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Paiement> paiements = new ArrayList<>();
 }

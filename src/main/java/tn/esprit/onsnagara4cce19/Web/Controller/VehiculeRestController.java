@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.onsnagara4cce19.Domain.Vehicule;
 import tn.esprit.onsnagara4cce19.Services.Impls.VehiculeService;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("/vehicules")
 @RestController
 public class VehiculeRestController {
     private final VehiculeService vehiculeService;
-
 
     @PostMapping
     public Vehicule add(@RequestBody Vehicule vehicule) {
@@ -27,4 +28,13 @@ public class VehiculeRestController {
         return vehiculeService.updateVehicule(vehicule);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        vehiculeService.deleteVehicule(id);
+    }
+
+    @GetMapping
+    public List<Vehicule> getAll() {
+        return vehiculeService.getAllVehicules();
+    }
 }

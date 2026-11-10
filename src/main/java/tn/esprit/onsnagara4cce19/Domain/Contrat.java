@@ -1,5 +1,6 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,6 +27,7 @@ public class Contrat {
     @OneToOne(fetch = FetchType.LAZY)
     Reservation reservation;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Paiement> paiements = new ArrayList<>();
 }

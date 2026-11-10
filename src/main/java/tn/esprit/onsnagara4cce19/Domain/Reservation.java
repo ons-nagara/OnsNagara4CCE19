@@ -1,5 +1,7 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Reservation {
     @Id
@@ -27,6 +30,7 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     Client client;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     Contrat contrat;
 }

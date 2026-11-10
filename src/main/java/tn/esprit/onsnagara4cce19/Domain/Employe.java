@@ -1,5 +1,6 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -10,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Employe {
     @Id

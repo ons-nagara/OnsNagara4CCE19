@@ -1,5 +1,6 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,6 +26,7 @@ public class Client {
     String numPermis;
     LocalDate dateInscription;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
     List<Reservation> reservations = new ArrayList<>();
 }

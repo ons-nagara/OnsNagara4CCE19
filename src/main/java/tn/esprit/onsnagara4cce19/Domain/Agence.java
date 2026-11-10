@@ -1,5 +1,6 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,9 +23,11 @@ public class Agence {
     String adresse;
     String telephone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "agence")
     List<Employe> employes = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "agence")
     List<Vehicule> vehicules = new ArrayList<>();
 }

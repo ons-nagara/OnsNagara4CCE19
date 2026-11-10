@@ -1,5 +1,6 @@
 package tn.esprit.onsnagara4cce19.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +20,7 @@ public class Equipement {
     Long idEquipement;
     String libelle;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
     Set<Vehicule> vehicules = new HashSet<>();
 }

@@ -86,4 +86,37 @@ public class VehiculeService implements IVehiculeService {
         return null;
     }
 
+    @Override
+    public Vehicule unassignVehiculeFromAgence(Long idVehicule) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+        if (vehicule != null) {
+            vehicule.setAgence(null);
+            return vehiculeRepository.save(vehicule);
+        }
+        return null;
+    }
+
+    @Override
+    public Vehicule unassignVehiculeFromEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+        Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+        if (vehicule != null && equipement != null) {
+            vehicule.getEquipements().remove(equipement);
+            return vehiculeRepository.save(vehicule);
+        }
+        return null;
+    }
+
+    @Override
+    public Vehicule unassignVehiculeFromAgenceAndEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).orElse(null);
+        Equipement equipement = equipementRepository.findById(idEquipement).orElse(null);
+        if (vehicule != null && equipement != null) {
+            vehicule.setAgence(null);
+            vehicule.getEquipements().remove(equipement);
+            return vehiculeRepository.save(vehicule);
+        }
+        return null;
+    }
+
 }

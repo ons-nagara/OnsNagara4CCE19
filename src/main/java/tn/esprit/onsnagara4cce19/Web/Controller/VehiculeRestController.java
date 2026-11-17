@@ -65,4 +65,23 @@ public class VehiculeRestController {
                                                         @PathVariable Long idEquipement) {
         return vehiculeService.assignVehiculeToAgenceAndEquipement(idVehicule, idAgence, idEquipement);
     }
+
+    @Operation(summary = "Désaffecter un véhicule de son agence")
+    @PutMapping("/{idVehicule}/desaffecter-agence")
+    public Vehicule unassignVehiculeFromAgence(@PathVariable Long idVehicule) {
+        return vehiculeService.unassignVehiculeFromAgence(idVehicule);
+    }
+
+    @Operation(summary = "Désaffecter un véhicule d'un équipement")
+    @PutMapping("/{idVehicule}/desaffecter-equipement/{idEquipement}")
+    public Vehicule unassignVehiculeFromEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+        return vehiculeService.unassignVehiculeFromEquipement(idVehicule, idEquipement);
+    }
+
+    @Operation(summary = "Désaffecter un véhicule de son agence et d'un équipement")
+    @PutMapping("/desaffecter-agence-equipement/{idEquipement}")
+    public Vehicule unassignVehiculeFromAgenceAndEquipement(@RequestBody Long idVehicule,
+                                                            @PathVariable Long idEquipement) {
+        return vehiculeService.unassignVehiculeFromAgenceAndEquipement(idVehicule, idEquipement);
+    }
 }

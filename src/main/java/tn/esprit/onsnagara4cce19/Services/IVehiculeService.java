@@ -13,6 +13,9 @@ public interface IVehiculeService {
     Vehicule assignVehiculeToAgence(Long idVehicule, Long idAgence);
     Vehicule assignVehiculeToEquipement(Long idVehicule, Long idEquipement);
     Vehicule assignVehiculeToAgenceAndEquipement(Long idVehicule, Long idAgence, Long idEquipement);
+    Vehicule unassignVehiculeFromAgence(Long idVehicule);
+    Vehicule unassignVehiculeFromEquipement(Long idVehicule, Long idEquipement);
+    Vehicule unassignVehiculeFromAgenceAndEquipement(Long idVehicule, Long idEquipement);
 
 
 }

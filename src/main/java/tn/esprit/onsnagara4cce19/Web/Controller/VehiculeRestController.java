@@ -45,4 +45,24 @@ public class VehiculeRestController {
     public void deleteById(@PathVariable Long id) {
         vehiculeService.deleteVehicule(id);
     }
+
+    @Operation(summary = "Affecter un véhicule à une agence")
+    @PutMapping("/{idVehicule}/agence/{idAgence}")
+    public Vehicule assignVehiculeToAgence(@PathVariable Long idVehicule, @PathVariable Long idAgence) {
+        return vehiculeService.assignVehiculeToAgence(idVehicule, idAgence);
+    }
+
+    @Operation(summary = "Affecter un véhicule à un équipement")
+    @PutMapping("/{idVehicule}/equipement/{idEquipement}")
+    public Vehicule assignVehiculeToEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+        return vehiculeService.assignVehiculeToEquipement(idVehicule, idEquipement);
+    }
+
+    @Operation(summary = "Affecter un véhicule à une agence et à un équipement")
+    @PutMapping("/agence/{idAgence}/equipement/{idEquipement}")
+    public Vehicule assignVehiculeToAgenceAndEquipement(@RequestBody Long idVehicule,
+                                                        @PathVariable Long idAgence,
+                                                        @PathVariable Long idEquipement) {
+        return vehiculeService.assignVehiculeToAgenceAndEquipement(idVehicule, idAgence, idEquipement);
+    }
 }
